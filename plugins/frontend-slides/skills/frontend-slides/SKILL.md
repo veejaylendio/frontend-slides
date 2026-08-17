@@ -1,6 +1,6 @@
 ---
 name: frontend-slides
-description: Create stunning, animation-rich HTML presentations from scratch or by converting PowerPoint files. Use when the user wants to build a presentation, convert a PPT/PPTX to web, or create slides for a talk/pitch. Helps non-designers discover their aesthetic through visual exploration rather than abstract choices.
+description: Create stunning, animation-rich HTML presentations from scratch or by converting PowerPoint files. Use when the user wants to build a presentation, convert a PPT/PPTX to web, or create slides for a talk/pitch. Also use for sermons, homilies, worship-service messages, devotionals, and Bible studies — it derives the design from the passage, message register, and liturgical season, and enforces scripture-slide legibility rules. Helps non-designers discover their aesthetic through visual exploration rather than abstract choices.
 ---
 
 # Frontend Slides
@@ -71,6 +71,11 @@ Determine what the user wants:
 - **Mode A: New Presentation** — Create from scratch. Go to Phase 1.
 - **Mode B: PPT Conversion** — Convert a .pptx file. Go to Phase 4.
 - **Mode C: Enhancement** — Improve an existing HTML presentation. Read it, understand it, enhance. **Follow Mode C modification rules below.**
+- **Mode S: Sermon** — A sermon, homily, worship-service message, devotional, or Bible study. **Read [SERMON_DESIGN.md](SERMON_DESIGN.md) and follow its Phase S1–S3 in place of Phase 1 and Phase 2 Step 2.0**, then return here for Phase 3.
+
+**Sermon detection.** Route to Mode S when the user says sermon, preaching, message, homily, worship, Sunday, devotional, or Bible study; when the content is organized around a Bible passage; or when the user pastes a sermon manuscript, outline, or notes. Mode S applies on top of Mode A, B, or C — a sermon converted from PPTX is still a sermon.
+
+In Mode S the design is derived from the sermon's passage, register, and liturgical season rather than from generic purpose/mood questions. Do not ask a preacher to describe an aesthetic.
 
 ### Mode C: Modification Rules
 
@@ -137,6 +142,10 @@ Based on purpose, audience, mood, and content density, generate 3 distinct singl
 
 Do not ask the user whether they want options or a preset picker. The default discovery experience is always visual comparison.
 
+**The 3 previews are a sample, not the library.** There are 46 documented designs — 12 curated presets plus 34 bold templates — indexed together in [STYLE_CATALOG.md](STYLE_CATALOG.md), plus the unbounded custom wildcard slot. Show 3 because comparing 46 is useless, not because 3 is all there is.
+
+Say so when you present the previews: tell the user these are 3 of 46+ and that they can ask for different directions, name a style, or ask to see what else exists. Read [STYLE_CATALOG.md](STYLE_CATALOG.md) when the user asks "what else is there?", when you need to widen a shortlist, or when the first pass produces no strong match. It is a one-line-per-design index — cheap to read, and it never justifies reading a `design.md` early.
+
 If the user already gave a vibe, use it. If they did not, infer the likely mood from the occasion, audience, content, and stakes. Keep the options diverse enough that the user can react visually instead of needing to articulate taste up front.
 
 If the user explicitly names a preset or bold template, honor that as one option and generate the remaining preview slots around it.
@@ -193,9 +202,11 @@ Open each preview automatically for the user.
 ### Step 2.1: User Picks
 
 Ask (header: "Style"):
-Which style preview do you prefer? Options: Style A: [Name] / Style B: [Name] / Style C: [Name] / Mix elements
+Which style preview do you prefer? Options: Style A: [Name] / Style B: [Name] / Style C: [Name] / Show me other options
 
-If "Mix elements", ask for specifics.
+If the user picks "Show me other options", read [STYLE_CATALOG.md](STYLE_CATALOG.md) and offer a fresh round. Ask what to change about the ones they saw — more restrained, warmer, darker, more editorial — and generate 3 new previews from a different region of the library. Do not recycle a rejected direction. Repeat until they land on one; there is no cap on rounds.
+
+If the user wants to combine directions ("A's type with C's palette") or names a specific style from the catalog, honor it directly — build that as a preview rather than talking them out of it.
 
 ---
 
@@ -368,6 +379,8 @@ This captures each slide as a screenshot and combines them into a PDF. Perfect f
 
 | File                                               | Purpose                                                              | When to Read              |
 | -------------------------------------------------- | -------------------------------------------------------------------- | ------------------------- |
+| [SERMON_DESIGN.md](SERMON_DESIGN.md)               | Sermon intake, passage/register/season → design mapping, scripture slide rules | Phase 0 (whenever the deck is a sermon) |
+| [STYLE_CATALOG.md](STYLE_CATALOG.md)               | One-line index of all 46 designs with sermon-fit grading             | Phase 2 (widening the shortlist) |
 | [STYLE_PRESETS.md](STYLE_PRESETS.md)               | 12 curated visual presets with colors, fonts, and signature elements | Phase 2 (style selection) |
 | [bold-template-pack/selection-index.json](bold-template-pack/selection-index.json) | Compact bold template metadata for candidate selection | Phase 2 (style selection) |
 | [bold-template-pack/templates/*/preview.md](bold-template-pack/templates/) | Lightweight style cards for shortlisted bold title previews | Phase 2 after shortlisting |
